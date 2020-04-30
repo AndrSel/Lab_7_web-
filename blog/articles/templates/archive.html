@@ -1,0 +1,63 @@
+<title> Архив  статей </title>
+<style type="text/css">
+			body {
+    background: green;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #ffffff;    
+}
+.header img {
+    display: block;
+    width: 310px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.archive {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.post-title a {
+    color: #ffffff;
+}
+.article-author {
+    width: 50%;
+    float: left;
+}
+.article-created-date {
+    text-align: center;
+}
+.article {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.exit {
+    width: 1150px;
+    text-align: right;
+}
+a{
+    color:#BDB76B ;
+}
+</style>
+<body>
+    <div class="header">
+        {% load static %}
+        <img src="{% static 'img/123.png' %}">
+        <h2 class="exit"><a href="/article/new/">Написать статью</a></h2>
+        <!-- <link rel="stylesheet" href="{% static 'css/article.css' %}"> -->
+    </div>
+    <div class="archive">
+        {% for post in posts %}
+            <div class="one-post">
+                <h2 class="post-title">
+                    <a href="/article/{{ post.id }}">{{ post.title }}</a>
+                </h2>
+                <div class="article-info">
+                    <div class="article-author">{{ post.author.username }}</div>
+                    <div class="article-created-date">{{ post.created_date }}</div>
+                </div>
+                <p class="article-text">{{ post.get_excerpt }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
